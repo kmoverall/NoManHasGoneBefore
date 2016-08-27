@@ -75,7 +75,7 @@
 
 				col.a *= 1 - scanline * _LineStrength;
 
-				float flicker = (rand(_Time.y) - 0.5) / 6 + 0.5;
+				float flicker = (rand(_Time.y) - 0.5) / 6 + 0.75;
 
 				col.a *= flicker;
 				
