@@ -1,13 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class DisplayManager : MonoBehaviour {
 
     Animator anim;
-    public Display activeDisplay;
+    Display activeDisplay;
+    [HideInInspector]
+    public Display nextDisplay;
+    public List<Display> displaySequence;
+    int displayIndex = 0;
 
 	// Use this for initialization
 	void Start () {
+        activeDisplay = displaySequence[0];
+        foreach (Display dis in displaySequence) {
+            dis.gameObject.SetActive(false);
+        }
+        activeDisplay.gameObject.SetActive(true);
         anim = GetComponent<Animator>();
         anim.SetTrigger("Open");
     }
@@ -18,12 +28,14 @@ public class DisplayManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-	    if (activeDisplay.isReadyToClose && Input.anyKeyDown) {
-            anim.SetTrigger("Close");
-        }
 	}
 
-    void GetNextDisplay() {
+    public void StartNextDisplay() {
         activeDisplay.gameObject.SetActive(false);
+        displayIndex++;
+        if (displayIndex < displaySequence.Count) {
+            activeDisplay = displaySequence[displayIndex];
+            activeDisplay.gameObject.SetActive(true);
+        }
     }
 }

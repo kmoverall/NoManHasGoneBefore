@@ -7,11 +7,11 @@ public class TypeOutText : MonoBehaviour {
     Text textObject;
     string stringToPrint;
 
-    public float typingSpeed = 0.1f;
+    public float typingSpeed = 0.01f;
+    public float newLineDelay = 0.5f;
     [HideInInspector]
     public bool isFinished = false;
-
-    // Use this for initialization
+    
     void Start() {
         textObject = GetComponent<Text>();
         stringToPrint = textObject.text;
@@ -26,7 +26,12 @@ public class TypeOutText : MonoBehaviour {
     IEnumerator TypeText() {
         for (int i = 0; i < stringToPrint.Length; i++) {
             textObject.text += stringToPrint[i];
-            yield return new WaitForSeconds(typingSpeed);
+            if (stringToPrint[i] == '\n') {
+                yield return new WaitForSeconds(newLineDelay);
+            }
+            else {
+                yield return new WaitForSeconds(typingSpeed);
+            }
         }
         isFinished = true;
     }
