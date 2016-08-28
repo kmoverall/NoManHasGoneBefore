@@ -104,9 +104,18 @@ public class ShipDialog : Display {
     }
 
     public void NextPhase() {
+
         if (repair >= 0) {
             float oldCond = compCond[repair];
-            compCond[repair] += 0.25f * compCond[1] * compPower[1];
+            if (repair == 0 || repair == 2) {
+                compCond[repair] += 0.3f * compCond[1] * compPower[1];
+            }
+            else if (repair == 1) {
+                compCond[repair] += 0.3f * compPower[1];
+            }
+            else if (repair == 3) {
+                compCond[repair] += 0.3f * compCond[1];
+            }
             Mathf.Clamp01(compCond[repair]);
 
             if (repair == 3) {
@@ -116,22 +125,35 @@ public class ShipDialog : Display {
             }
         }
 
+        remainingPassengers = 0;
+        for (int i = 0; i < startPassengers; i++) {
+            if (manifest[i].isAlive) {
+                float rnd = Random.Range(0.0f, 1.0f);
+                if (rnd > Mathf.Sqrt(compCond[0] * compPower[0])) {
+                    manifest[i].isAlive = false;
+                }
+                else {
+                    remainingPassengers++;
+                }
+            }
+        }
+
         float totalPower = compPower[3] * compCond[3];
 
-        float randFactor = Mathf.Lerp(0.25f, 0.05f, compCond[2] * compPower[2] * 0.8f + (1 - compPower[0]) * 0.2f);
-        compCond[0] -= Random.Range(0.0f, randFactor);
+        float randFactor = Mathf.Lerp(0.25f, 0.05f, Mathf.Sqrt(compCond[2] * compPower[2]) * 0.7f + (1 - compPower[0]) * 0.3f);
+        compCond[0] -= Random.Range(randFactor / 5, randFactor);
         compCond[0] = Mathf.Clamp01(compCond[0]);
 
-        randFactor = Mathf.Lerp(0.25f, 0.05f, compCond[2] * compPower[2] * 0.8f + (1 - compPower[1]) * 0.2f);
-        compCond[1] -= Random.Range(0.0f, randFactor);
+        randFactor = Mathf.Lerp(0.25f, 0.05f, Mathf.Sqrt(compCond[2] * compPower[2]) * 0.7f + (1 - compPower[1]) * 0.3f);
+        compCond[1] -= Random.Range(randFactor / 5, randFactor);
         compCond[1] = Mathf.Clamp01(compCond[1]);
 
-        randFactor = Mathf.Lerp(0.25f, 0.05f, compCond[2] * compPower[2] * 0.8f + (1 - compPower[3]) * 0.2f);
-        compCond[3] -= Random.Range(0.0f, randFactor);
+        randFactor = Mathf.Lerp(0.25f, 0.05f, Mathf.Sqrt(compCond[2] * compPower[2]) * 0.5f + (1 - compPower[3]) * 0.5f);
+        compCond[3] -= Random.Range(randFactor / 5, randFactor);
         compCond[3] = Mathf.Clamp01(compCond[3]);
 
-        randFactor = Mathf.Lerp(0.25f, 0.05f, compCond[2] * compPower[2] * 0.8f + (1 - compPower[2]) * 0.2f);
-        compCond[2] -= Random.Range(0.0f, randFactor);
+        randFactor = Mathf.Lerp(0.25f, 0.05f, Mathf.Sqrt(compCond[2] * compPower[2]) * 0.7f + (1 - compPower[2]) * 0.3f);
+        compCond[2] -= Random.Range(randFactor / 5, randFactor);
         compCond[2] = Mathf.Clamp01(compCond[2]);
 
         for (int i = 0; i < 3; i++) {
@@ -144,19 +166,6 @@ public class ShipDialog : Display {
         }
 
         year += Random.Range(450, 550);
-
-        remainingPassengers = 0;
-        for (int i = 0; i < startPassengers; i++) {
-            if (manifest[i].isAlive) {
-                float rnd = Random.Range(0.0f, 1.0f);
-                if (rnd > compCond[0] * compPower[0]) {
-                    manifest[i].isAlive = false;
-                }
-                else {
-                    remainingPassengers++;
-                }
-            }
-        }
 
         manager.StartNextDisplay();
     }
