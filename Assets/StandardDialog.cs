@@ -42,8 +42,12 @@ public class StandardDialog : Display {
                 yield return new WaitForSeconds(inbetweenWait);
         }
 
-        yield return new WaitForSeconds(endWait);
-
         isReadyToClose = true;
+
+        if (endWait > 0) {
+            yield return new WaitForSeconds(endWait);
+
+            manager.StartNextDisplay();
+        }
     }
 }

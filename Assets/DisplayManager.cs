@@ -6,14 +6,16 @@ public class DisplayManager : MonoBehaviour {
 
     Animator anim;
     Display activeDisplay;
-    [HideInInspector]
-    public Display nextDisplay;
     public List<Display> displaySequence;
+    public int loopBackTo = 2;
+    public int startIndex = 0;
     int displayIndex = 0;
 
 	// Use this for initialization
 	void Start () {
-        activeDisplay = displaySequence[0];
+        displayIndex = startIndex;
+        activeDisplay = displaySequence[displayIndex];
+        
         foreach (Display dis in displaySequence) {
             dis.gameObject.SetActive(false);
         }
@@ -32,10 +34,14 @@ public class DisplayManager : MonoBehaviour {
 
     public void StartNextDisplay() {
         activeDisplay.gameObject.SetActive(false);
-        displayIndex++;
-        if (displayIndex < displaySequence.Count) {
-            activeDisplay = displaySequence[displayIndex];
-            activeDisplay.gameObject.SetActive(true);
+
+        if (displayIndex < displaySequence.Count-1) {
+            displayIndex++;
         }
+        else {
+            displayIndex = loopBackTo;
+        }
+        activeDisplay = displaySequence[displayIndex];
+        activeDisplay.gameObject.SetActive(true);
     }
 }
