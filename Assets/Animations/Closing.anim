@@ -378,8 +378,8 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_Events:
-  - time: 0
-    functionName: GetNextDisplay
+  - time: 0.25
+    functionName: ChangeDisplay
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

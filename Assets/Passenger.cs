@@ -8,6 +8,7 @@ public class Passenger {
     public string occupation = "";
     public int age = 35;
     public bool isSpouse = false;
+    public bool isPlayer = false;
 
     public Passenger() { }
 }

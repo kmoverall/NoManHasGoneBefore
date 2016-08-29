@@ -7,6 +7,7 @@ public class DisplayManager : MonoBehaviour {
     Animator anim;
     Display activeDisplay;
     public List<Display> displaySequence;
+    public List<string> animCues;
     public int loopBackTo = 2;
     public int startIndex = 0;
     int displayIndex = 0;
@@ -21,7 +22,6 @@ public class DisplayManager : MonoBehaviour {
         }
         activeDisplay.gameObject.SetActive(true);
         anim = GetComponent<Animator>();
-        anim.SetTrigger("Open");
     }
 	
     public void BeginDisplay() {
@@ -33,14 +33,28 @@ public class DisplayManager : MonoBehaviour {
 	}
 
     public void StartNextDisplay() {
-        activeDisplay.gameObject.SetActive(false);
+        if (ShipDialog.gameComplete) {
+            Application.Quit();
+            UnityEditor.EditorApplication.isPlaying = false;
+        }
 
-        if (displayIndex < displaySequence.Count-1) {
+        if (displayIndex < displaySequence.Count - 1) {
             displayIndex++;
         }
         else {
             displayIndex = loopBackTo;
         }
+
+        if (animCues[displayIndex] != "") {
+            anim.SetTrigger(animCues[displayIndex]);
+        }
+        else {
+            ChangeDisplay();
+        }
+    }
+
+    public void ChangeDisplay() {
+        activeDisplay.gameObject.SetActive(false);
         activeDisplay = displaySequence[displayIndex];
         activeDisplay.gameObject.SetActive(true);
     }

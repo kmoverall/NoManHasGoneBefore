@@ -5,14 +5,20 @@ using System.Collections;
 public class TypeOutText : MonoBehaviour {
 
     Text textObject;
-    string stringToPrint;
+    string stringToPrint = "";
 
     public float typingSpeed = 0.01f;
     public float newLineDelay = 0.5f;
     [HideInInspector]
     public bool isFinished = false;
-    
-    void Start() {
+    public bool autoReset = false;
+
+    void OnEnable() {
+        if (autoReset || stringToPrint == "")
+            PrepText();
+    }
+
+    public void PrepText() {
         textObject = GetComponent<Text>();
         stringToPrint = textObject.text;
         textObject.text = "";
@@ -23,7 +29,15 @@ public class TypeOutText : MonoBehaviour {
         StartCoroutine("TypeText");
     }
 
+    public void Interrupt() {
+        StopCoroutine("TypeText");
+        textObject.text = stringToPrint;
+        isFinished = true;
+    }
+
     IEnumerator TypeText() {
+        isFinished = false;
+        textObject.text = "";
         for (int i = 0; i < stringToPrint.Length; i++) {
             textObject.text += stringToPrint[i];
             if (stringToPrint[i] == '\n') {
