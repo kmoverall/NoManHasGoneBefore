@@ -34,8 +34,11 @@ public class DisplayManager : MonoBehaviour {
 
     public void StartNextDisplay() {
         if (ShipDialog.gameComplete) {
-            Application.Quit();
+            
+            #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
+            #endif
+            Application.Quit();
         }
 
         if (displayIndex < displaySequence.Count - 1) {

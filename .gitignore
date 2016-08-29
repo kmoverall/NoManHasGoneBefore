@@ -29,6 +29,11 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
+*.exe
+*.zip
+/NoManHasGoneBefore_Data
+/NoManHasGoneBeforeWebGL
+
 # =========================
 # Operating System Files
 # =========================

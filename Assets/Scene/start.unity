@@ -4919,6 +4919,7 @@ GameObject:
   - 92: {fileID: 621043033}
   - 124: {fileID: 621043032}
   - 81: {fileID: 621043031}
+  - 114: {fileID: 621043036}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4994,6 +4995,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &621043036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 621043030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da0419000b0e6734ea13b86a13dd6a0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shade: {fileID: 4800000, guid: 1cf84b7c98b5f184bb8dd5d53a9d8196, type: 3}
 --- !u!1 &628038267
 GameObject:
   m_ObjectHideFlags: 0
@@ -14654,7 +14667,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 0
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 50
   m_Viewport: {fileID: 268825954}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 124169703}
@@ -17988,7 +18001,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 0
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 50
   m_Viewport: {fileID: 1734158060}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 1886936053}
