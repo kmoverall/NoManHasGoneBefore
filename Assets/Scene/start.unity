@@ -1017,6 +1017,29 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 118653855}
+--- !u!21 &118700987
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Hidden/ShrinkScreen
+  m_Shader: {fileID: 4800000, guid: 1cf84b7c98b5f184bb8dd5d53a9d8196, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+    - first:
+        name: _MainTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors: []
 --- !u!1 &124169701
 GameObject:
   m_ObjectHideFlags: 0
@@ -5006,6 +5029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da0419000b0e6734ea13b86a13dd6a0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mat: {fileID: 118700987}
   shade: {fileID: 4800000, guid: 1cf84b7c98b5f184bb8dd5d53a9d8196, type: 3}
 --- !u!1 &628038267
 GameObject:
@@ -7359,7 +7383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPassengers: 200
-  repairStrength: 0.5
+  repairStrength: 0.4
   yearText: {fileID: 1623751288}
   shipImg: {fileID: 699046975}
   helpText: {fileID: 1277994635}

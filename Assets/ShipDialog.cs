@@ -193,20 +193,20 @@ public class ShipDialog : Display {
 
         float totalPower = compPower[3] * compCond[3];
 
-        float randFactor = Mathf.Lerp(0.3f, 0.07f, Mathf.Sqrt(compCond[2] * compPower[2]) * 0.7f + (1 - compPower[0]) * 0.3f);
-        compCond[0] -= Random.Range(randFactor / 5, randFactor);
+        float randFactor = Mathf.Lerp(0.35f, 0.07f, Mathf.Sqrt(compCond[2] * compPower[2]) * 0.7f + (1 - compPower[0]) * 0.3f);
+        compCond[0] -= Random.Range(randFactor / 5f, randFactor);
         compCond[0] = Mathf.Clamp01(compCond[0]);
 
-        randFactor = Mathf.Lerp(0.3f, 0.07f, Mathf.Sqrt(compCond[2] * compPower[2]) * 0.7f + (1 - compPower[1]) * 0.3f);
-        compCond[1] -= Random.Range(randFactor / 5, randFactor);
+        randFactor = Mathf.Lerp(0.35f, 0.07f, Mathf.Sqrt(compCond[2] * compPower[2]) * 0.7f + (1 - compPower[1]) * 0.3f);
+        compCond[1] -= Random.Range(randFactor / 5f, randFactor);
         compCond[1] = Mathf.Clamp01(compCond[1]);
 
-        randFactor = Mathf.Lerp(0.3f, 0.07f, Mathf.Sqrt(compCond[2] * compPower[2]) * 0.5f + (1 - compPower[3]) * 0.5f);
-        compCond[3] -= Random.Range(randFactor / 5, randFactor);
+        randFactor = Mathf.Lerp(0.35f, 0.07f, Mathf.Sqrt(compCond[2] * compPower[2]) * 0.5f + (1 - compPower[3]) * 0.5f);
+        compCond[3] -= Random.Range(randFactor / 5f, randFactor);
         compCond[3] = Mathf.Clamp01(compCond[3]);
 
-        randFactor = Mathf.Lerp(0.3f, 0.07f, Mathf.Sqrt(compCond[2] * compPower[2]) * 0.7f + (1 - compPower[2]) * 0.3f);
-        compCond[2] -= Random.Range(randFactor / 5, randFactor);
+        randFactor = Mathf.Lerp(0.35f, 0.07f, Mathf.Sqrt(compCond[2] * compPower[2]) * 0.7f + (1 - compPower[2]) * 0.3f);
+        compCond[2] -= Random.Range(randFactor / 5f, randFactor);
         compCond[2] = Mathf.Clamp01(compCond[2]);
 
         for (int i = 0; i < 3; i++) {

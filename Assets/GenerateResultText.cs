@@ -82,7 +82,7 @@ public class GenerateResultText : MonoBehaviour {
         else if (ShipDialog.remainingPassengers == 1 && ShipDialog.year >= 10000) {
             ShipDialog.gameComplete = true;
             titleText.text = "UNSS TEBA AUTOMATED REPORT: MISSION YEARS " + ShipDialog.prevYear + " - " + ShipDialog.year;
-            bodyText.text = "> MISSION FAILURE";
+            bodyText.text = "> MISSION FAILURE\n";
             bodyText.text += "> The UNSS Teba has landed upon a habitable planet.\n";
             bodyText.text += "> Alas, the last human passed away quietly in cryostasis shortly before landing. We can only hope that some other species will someday find this planet, and find this ship. For then, we will have someone to mourn us.\n";
             bodyText.text += "\n> BEGINNING MEMORIALIZATION PROTOCOLS...";

@@ -17,6 +17,24 @@ public class ManifestDisplay : MonoBehaviour {
     public RectTransform deadList;
 
     public void UpdateLists() {
+        foreach (Text t in aliveNameList) {
+            DestroyImmediate(t);
+        }
+        foreach (Text t in aliveAgeList) {
+            DestroyImmediate(t);
+        }
+        foreach (Text t in deadNameList) {
+            DestroyImmediate(t);
+        }
+        foreach (Text t in deadAgeList) {
+            DestroyImmediate(t);
+        }
+
+        aliveNameList.Clear();
+        aliveAgeList.Clear();
+        deadNameList.Clear();
+        deadAgeList.Clear();
+
         for (int i = 0; i < ShipDialog.manifest.Count; i++) {
             if (ShipDialog.manifest[i].isAlive) {
                 aliveNameList.Add(Instantiate(aliveListItem));
